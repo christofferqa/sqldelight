@@ -23,19 +23,16 @@ android {
     versionName '1.0'
   }
 
-  signingConfigs {
-    debug {
-      storeFile file('debug.keystore')
-      storePassword 'android'
-      keyAlias 'android'
-      keyPassword 'android'
-    }
-  }
-
   buildTypes {
     debug {
       applicationIdSuffix '.development'
       signingConfig signingConfigs.debug
+    }
+    release {
+      signingConfig signingConfigs.debug
+      minifyEnabled true
+      shrinkResources true
+      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
     }
   }
 }
